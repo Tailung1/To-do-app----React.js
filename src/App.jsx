@@ -6,6 +6,7 @@ import './App.css'
 function App() {
     const [todos,setTodos]=useState([])
     const [newValue,setNewValue]=useState("")
+    const [editId,setEditId]=useState("");
 
     const handleAdd=()=> {
         setTodos((prevTodos)=>[...prevTodos,
@@ -41,9 +42,14 @@ function App() {
                 <input onChange={(event)=>
                 handleCheck(event,item.id)}
                 type="checkbox" />
-                {item.todo}
-                <button>edit</button>
-                <button onClick={()=>handleDelete(item.id)}>delete</button>
+                {item.id === editId
+                 ? <input defaultValue={item.todo} type='text' />
+                 : item.todo}
+                 
+                <button onClick={()=>setEditId(item.id)}>edit</button>
+                <button onClick={()=>
+                    handleDelete(item.id)}
+                    >delete</button>    
             </li>
         ))}
     </ul>
