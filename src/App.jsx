@@ -23,8 +23,6 @@ function App() {
             
         )])
     }
-    console.log(todos)
-
 
   return (
     <>
@@ -35,8 +33,11 @@ function App() {
 
     <ul>
         {todos.map((item)=>(
-            <li key={item.id}>
-                <input onChange={(event)=>handleCheck(event,item.id)} type="checkbox" />
+            <li key={item.id} style={{textDecoration: item.status? "line-through":null}} > 
+                <input onChange={(event)=>
+                handleCheck(event,item.id)}
+                type="checkbox" />
+
                 {item.todo}
             </li>
         ))}
