@@ -9,12 +9,23 @@ function App() {
 
     const handleAdd=()=> {
         setTodos((prevTodos)=>[...prevTodos,
-            {todo:newValue,status:false,id:Math.random()}])
+            {todo:newValue,
+            status:false,
+            id:Math.random()}])
         setNewValue("");
     }
-    const handleCheck=(event)=> {
-        
+
+    const handleCheck=(event,id)=> {
+        setTodos(prevTodos => [...prevTodos.map(todo=>
+            todo.id === id
+            ? {...todo,status:event.target.checked}
+            : todo
+            
+        )])
     }
+    console.log(todos)
+
+
   return (
     <>
     <input type='text'  value={newValue} onChange={(event)=>
@@ -25,7 +36,7 @@ function App() {
     <ul>
         {todos.map((item)=>(
             <li key={item.id}>
-                <input onChange={(event)=>handleCheck} type="checkbox" />
+                <input onChange={(event)=>handleCheck(event,item.id)} type="checkbox" />
                 {item.todo}
             </li>
         ))}
