@@ -7,6 +7,7 @@ function App() {
     const [todos,setTodos]=useState([])
     const [newValue,setNewValue]=useState("")
     const [editId,setEditId]=useState("");
+    const [editTodo,setEditTodo]=useState("");
 
     const handleAdd=()=> {
         setTodos((prevTodos)=>[...prevTodos,
@@ -43,13 +44,29 @@ function App() {
                 handleCheck(event,item.id)}
                 type="checkbox" />
                 {item.id === editId
-                 ? <input defaultValue={item.todo} type='text' />
-                 : item.todo}
-                 
-                <button onClick={()=>setEditId(item.id)}>edit</button>
-                <button onClick={()=>
+                    ? <input defaultValue={item.todo} type='text' onChange={(event)=>setEditTodo(event.target.value)} />
+                    : item.todo}
+
+                <button onClick={item.id === editId
+                    ? () => {
+                        setTodos(prevTodos => prevTodos.map(todo =>
+                            todo.id === editId ? { ...todo, todo: editTodo } : todo
+                        ));
+                        setEditId(""); 
+                    }
+                    : () => { 
+                        setEditId(item.id); 
+                        setEditTodo(item.todo);
+                    }
+                }>
+                    {item.id === editId ? 'Save' : 'Edit'}
+                </button>
+
+
+                 <button onClick={()=>
                     handleDelete(item.id)}
-                    >delete</button>    
+                    >delete
+                </button>    
             </li>
         ))}
     </ul>
