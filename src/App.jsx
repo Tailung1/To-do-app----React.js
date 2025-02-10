@@ -12,7 +12,9 @@ function App() {
             {todo:newValue,status:false,id:Math.random()}])
         setNewValue("");
     }
-   
+    const handleCheck=(event)=> {
+        
+    }
   return (
     <>
     <input type='text'  value={newValue} onChange={(event)=>
@@ -23,7 +25,7 @@ function App() {
     <ul>
         {todos.map((item)=>(
             <li key={item.id}>
-                <input type="checkbox" />
+                <input onChange={(event)=>handleCheck} type="checkbox" />
                 {item.todo}
             </li>
         ))}
