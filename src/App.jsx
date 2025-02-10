@@ -23,7 +23,11 @@ function App() {
             
         )])
     }
-
+    const handleDelete=(id)=>{
+        setTodos(prevTodos=>[...prevTodos.filter(todo => 
+            todo.id !== id
+        )])
+    }
   return (
     <>
     <input type='text'  value={newValue} onChange={(event)=>
@@ -37,8 +41,9 @@ function App() {
                 <input onChange={(event)=>
                 handleCheck(event,item.id)}
                 type="checkbox" />
-
                 {item.todo}
+                <button>edit</button>
+                <button onClick={()=>handleDelete(item.id)}>delete</button>
             </li>
         ))}
     </ul>
