@@ -30,6 +30,18 @@ function App() {
             todo.id !== id
         )])
     }
+
+    const handleEdit=(item)=> {
+        setEditId(item.id); 
+        setEditTodo(item.todo);
+    }
+    const handleSave=(item)=> {   
+            setTodos(prevTodos => prevTodos.map(todo =>
+                todo.id === editId ? { ...todo, todo: editTodo } : todo
+            ));
+            setEditId(""); 
+    }
+
   return (
     <>
     <input type='text'  value={newValue} onChange={(event)=>
@@ -47,17 +59,9 @@ function App() {
                     ? <input defaultValue={item.todo} type='text' onChange={(event)=>setEditTodo(event.target.value)} />
                     : item.todo}
 
-                <button onClick={item.id === editId
-                    ? () => {
-                        setTodos(prevTodos => prevTodos.map(todo =>
-                            todo.id === editId ? { ...todo, todo: editTodo } : todo
-                        ));
-                        setEditId(""); 
-                    }
-                    : () => { 
-                        setEditId(item.id); 
-                        setEditTodo(item.todo);
-                    }
+                <button onClick={()=>item.id === editId
+                    ? handleSave(item)
+                    : handleEdit(item)
                 }>
                     {item.id === editId ? 'Save' : 'Edit'}
                 </button>
