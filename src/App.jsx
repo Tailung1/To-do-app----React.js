@@ -35,7 +35,7 @@ function App() {
         setEditId(item.id); 
         setEditTodo(item.todo);
     }
-    const handleSave=(item)=> {   
+    const handleSave=()=> {   
             setTodos(prevTodos => prevTodos.map(todo =>
                 todo.id === editId ? { ...todo, todo: editTodo } : todo
             ));
@@ -60,7 +60,7 @@ function App() {
                     : item.todo}
 
                 <button onClick={()=>item.id === editId
-                    ? handleSave(item)
+                    ? handleSave()
                     : handleEdit(item)
                 }>
                     {item.id === editId ? 'Save' : 'Edit'}
