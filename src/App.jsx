@@ -10,6 +10,7 @@ function App() {
     const [editTodo,setEditTodo]=useState("");
 
     const handleAdd=()=> {
+        if(!newValue) return;
         setTodos((prevTodos)=>[...prevTodos,
             {todo:newValue,
             status:false,
