@@ -1,80 +1,26 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import AddTodo from './components/AddTodo'
+import TodoList from './components/TodoList'
 
 function App() {
     const [todos,setTodos]=useState([])
     const [newValue,setNewValue]=useState("")
-    const [editId,setEditId]=useState("");
-    const [editTodo,setEditTodo]=useState("");
 
-    const handleAdd=()=> {
-        if(!newValue) return;
-        setTodos((prevTodos)=>[...prevTodos,
-            {todo:newValue,
-            status:false,
-            id:Math.random()}])
-        setNewValue("");
-    }
-
-    const handleCheck=(event,id)=> {
-        setTodos(prevTodos => [...prevTodos.map(todo=>
-            todo.id === id
-            ? {...todo,status:event.target.checked}
-            : todo
-            
-        )])
-    }
-    const handleDelete=(id)=>{
-        setTodos(prevTodos=>[...prevTodos.filter(todo => 
-            todo.id !== id
-        )])
-    }
-
-    const handleEdit=(item)=> {
-        setEditId(item.id); 
-        setEditTodo(item.todo);
-    }
-    const handleSave=()=> {   
-            setTodos(prevTodos => prevTodos.map(todo =>
-                todo.id === editId ? { ...todo, todo: editTodo } : todo
-            ));
-            setEditId(""); 
-    }
 
   return (
     <>
-    <input type='text'  value={newValue} onChange={(event)=>
-        setNewValue(event.target.value)}/>
-
-    <button onClick={handleAdd}>Add</button>
-
-    <ul>
-        {todos.map((item)=>(
-            <li key={item.id} style={{textDecoration: item.status? "line-through":null}} > 
-                <input onChange={(event)=>
-                handleCheck(event,item.id)}
-                type="checkbox" />
-                {item.id === editId
-                    ? <input defaultValue={item.todo} type='text' onChange={(event)=>setEditTodo(event.target.value)} />
-                    : item.todo}
-
-                <button onClick={()=>item.id === editId
-                    ? handleSave()
-                    : handleEdit(item)
-                }>
-                    {item.id === editId ? 'Save' : 'Edit'}
-                </button>
-
-
-                 <button onClick={()=>
-                    handleDelete(item.id)}
-                    >delete
-                </button>    
-            </li>
-        ))}
-    </ul>
+    <main className='min-h-screen min-w-screen bg-hero-image bg-no-repeat bg-dark '>
+        <div className='w-[540px] mx-auto pt-[50px]'>
+            <div className='flex justify-between items-center'>
+                <h1 className='text-white text-[40px] font-bold'>TODO</h1>
+                <img src='/images/icon-sun.svg' />
+            </div>
+        <AddTodo setTodos={setTodos} newValue={newValue} setNewValue={setNewValue} />
+        <TodoList todos={todos} setTodos={setTodos} />
+        </div>
+    </main>
     </>
   )
 }
