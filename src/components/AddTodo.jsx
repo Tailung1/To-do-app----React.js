@@ -10,7 +10,7 @@ export default function AddTodo({setTodos,newValue,setNewValue}) {
         setNewValue("");
     }
     return (
-       <div className="mt-[48px] relative">
+       <div className="mt-[48px] rounded-[20px] overflow-hidden relative">
             <input
             className="w-full py-[23px] pl-[72px] bg-dark-blue text-[#767992] text-[18px] outline-none font-normal"
             placeholder='Create a new todo ...'
