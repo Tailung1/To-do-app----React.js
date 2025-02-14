@@ -13,6 +13,7 @@ export default function TodoList({todos,setTodos}) {
             
         )])
     }
+
     const handleDelete=(id)=>{
         setTodos(prevTodos=>[...prevTodos.filter(todo => 
             todo.id !== id
@@ -23,6 +24,7 @@ export default function TodoList({todos,setTodos}) {
         setEditId(item.id); 
         setEditTodo(item.todo);
     }
+    
     const handleSave=()=> {   
             setTodos(prevTodos => prevTodos.map(todo =>
                 todo.id === editId ? { ...todo, todo: editTodo } : todo
@@ -72,6 +74,7 @@ export default function TodoList({todos,setTodos}) {
             </li>
         ))}
     </ul>
+    
         </>
     )
 }
