@@ -8,7 +8,8 @@ export default {
       extend:{
         colors: {
             'dark':'#171823',
-            "dark-blue":"#25273D"
+            "dark-blue":"#25273D",
+            "indicatorColor": "#5B5E7E"
         },
         backgroundImage: {
             "hero-image": "url('/images/bg-desktop-dark.jpg')"
