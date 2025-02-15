@@ -12,7 +12,8 @@ export default {
             "indicatorColor": "#5B5E7E"
         },
         backgroundImage: {
-            "hero-image": "url('/images/bg-desktop-dark.jpg')"
+            "hero-image": "url('/images/bg-desktop-dark.jpg')",
+            "mountains": "url('/images/bg-desktop-light.jpg')"
         },
       },
     },

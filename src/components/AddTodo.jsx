@@ -5,6 +5,7 @@ export default function AddTodo({
   setTodos,
   newValue,
   setNewValue,
+  isDarkMode
   
 }) {
   const handleAdd = () => {
@@ -14,13 +15,12 @@ export default function AddTodo({
       { todo: newValue, status: false, id: Math.random() },
     ]);
     setNewValue("");
-    setTodosAmount(TodosAmount+1);
   };
 
   return (
     <div className="mt-[48px] rounded-[20px] overflow-hidden relative">
       <input
-        className="w-full py-[23px] pl-[72px] bg-dark-blue text-[#767992] text-[18px] outline-none font-normal"
+        className={`w-full py-[23px] pl-[72px] text-[#767992] text-[18px] outline-none font-normal ${isDarkMode ? "bg-dark-blue" : "bg-[#FAFAFA]"}`}
         placeholder="Create a new todo ..."
         value={newValue}
         onChange={(event) => setNewValue(event.target.value)}

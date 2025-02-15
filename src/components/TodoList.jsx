@@ -3,7 +3,9 @@ import React, { use, useState } from "react";
 export default function TodoList({
   todos,
   setTodos,
-  setFilter
+  setFilter,
+  isDarkMode
+  
 }) {
   const [editId, setEditId] = useState("");
   const [editTodo, setEditTodo] = useState("");
@@ -40,11 +42,15 @@ export default function TodoList({
   
   return (
     <>
-      <ul className="w-full bg-dark-blue mt-[24px] ">
+      <ul
+        className={`w-full mt-[24px] ${
+          isDarkMode ? "bg-dark-blue" : "bg-[#fff]"
+        }`}
+      >
         {todos.map((item) => (
           <li
             key={item.id}
-            className=" flex items-center gap-4 py-[20px] px-[24px]  "
+            className="flex items-center gap-4 py-[20px] px-[24px] border-b-[0.5px] border-gray-500 "
           >
             <input
               className="appearance-none w-6 h-6 rounded-full border-2 border-gray-300 checked:border-none checked:bg-[linear-gradient(to_bottom_right,#55DDFF,#C058F3)] flex items-center justify-center"
@@ -112,7 +118,7 @@ export default function TodoList({
           </div>
 
           <p
-            onClick={ handleClearCompleted}
+            onClick={handleClearCompleted}
             className="text-indicatorColor cursor-pointer"
           >
             Clear Completed
