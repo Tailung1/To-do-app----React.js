@@ -18,7 +18,6 @@ export default function TodoList({
 
   const handleDelete = (id) => {
     setTodos((prevTodos) => [...prevTodos.filter((todo) => todo.id !== id)]);
-    setTodosAmount(TodosAmount - 1);
   };
 
   const handleEdit = (item) => {
@@ -35,8 +34,8 @@ export default function TodoList({
     setEditId("");
   };
 
-  const handleCompleted=()=> (
-    todos.filter(todo => todo.status ===false)
+  const handleClearCompleted=()=> (
+    setTodos(prevTodos =>prevTodos.filter(todo => !todo.status))
   )
   
   return (
@@ -87,36 +86,38 @@ export default function TodoList({
             </div>
           </li>
         ))}
-        {todos.length > 0 && (
-          <div className="flex justify-between px-4 py-2 border-t border-gray-700">
-            <p className="text-indicatorColor cursor-pointer">
-              {todos.length} items left
+        <div className="flex justify-between px-4 py-2 border-t border-gray-700">
+          <p className="text-indicatorColor cursor-pointer">
+            {todos.length} items left
+          </p>
+          <div className="flex gap-x-[19px] cursor-pointer">
+            <p
+              onClick={() => setFilter("All")}
+              className="text-[#3A7CFD] cursor-pointer"
+            >
+              All
             </p>
-            <div className="flex gap-x-[19px] cursor-pointer">
-              <p
-                onClick={() => setFilter("All")}
-                className="text-[#3A7CFD] cursor-pointer"
-              >
-                All
-              </p>
-              <p
-                onClick={() => setFilter("Active")}
-                className="text-indicatorColor cursor-pointer"
-              >
-                Active
-              </p>
-              <p
-                onClick={() => setFilter("Completed")}
-                className="text-indicatorColor cursor-pointer"
-              >
-                Completed
-              </p>
-            </div>
-            <p className="text-indicatorColor cursor-pointer">
-              Clear Completed
+            <p
+              onClick={() => setFilter("Active")}
+              className="text-indicatorColor cursor-pointer"
+            >
+              Active
+            </p>
+            <p
+              onClick={() => setFilter("Completed")}
+              className="text-indicatorColor cursor-pointer"
+            >
+              Completed
             </p>
           </div>
-        )}
+
+          <p
+            onClick={ handleClearCompleted}
+            className="text-indicatorColor cursor-pointer"
+          >
+            Clear Completed
+          </p>
+        </div>
       </ul>
     </>
   );
