@@ -7,7 +7,14 @@ import TodoList from './components/TodoList'
 function App() {
     const [todos,setTodos]=useState([])
     const [newValue,setNewValue]=useState("")
-    const [completed,setCompleted]=useState(todos)
+    const [filter, setFilter] = useState("all");
+
+    const filtredTodos=todos.filter(todo =>
+        filter === "All"? true:
+        filter === "Active"? !todo.status :
+        filter ==="Completed"? todo.status :
+        true
+        );
   return (
     <>
       <main className="min-h-screen min-w-screen bg-hero-image bg-no-repeat bg-dark ">
@@ -21,7 +28,7 @@ function App() {
             newValue={newValue}
             setNewValue={setNewValue}
           />
-          <TodoList todos={todos} setTodos={setTodos} />
+          <TodoList setFilter={setFilter} todos={filtredTodos} setTodos={setTodos} />
         </div>
       </main>
     </>

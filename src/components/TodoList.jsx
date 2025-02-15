@@ -3,6 +3,7 @@ import React, { use, useState } from "react";
 export default function TodoList({
   todos,
   setTodos,
+  setFilter
 }) {
   const [editId, setEditId] = useState("");
   const [editTodo, setEditTodo] = useState("");
@@ -92,11 +93,21 @@ export default function TodoList({
               {todos.length} items left
             </p>
             <div className="flex gap-x-[19px] cursor-pointer">
-              <p className="text-[#3A7CFD] cursor-pointer">All</p>
-              <p className="text-indicatorColor cursor-pointer">Active</p>
               <p
+                onClick={() => setFilter("All")}
+                className="text-[#3A7CFD] cursor-pointer"
+              >
+                All
+              </p>
+              <p
+                onClick={() => setFilter("Active")}
                 className="text-indicatorColor cursor-pointer"
-                onClick={handleCompleted}
+              >
+                Active
+              </p>
+              <p
+                onClick={() => setFilter("Completed")}
+                className="text-indicatorColor cursor-pointer"
               >
                 Completed
               </p>
