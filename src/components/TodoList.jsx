@@ -44,7 +44,7 @@ export default function TodoList({
     <>
       <ul
         className={`w-full mt-[24px] ${
-          isDarkMode ? "bg-dark-blue" : "bg-[#fff]"
+          isDarkMode ? "bg-dark-blue" : "bg-[#9ea39f]"
         }`}
       >
         {todos.map((item) => (
